@@ -1,63 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
     function copyDiv(src,dst){
       var firstDivContent = document.getElementById(src);
       var secondDivContent = document.getElementById(dst);
       secondDivContent.innerHTML = firstDivContent.innerHTML;
     }
   </script>
-<style>
-body {
-  margin: 0;
-}
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 25%;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      position: -webkit-sticky; /* Safari */
+      position: sticky;
+      top: 0;
+    }
 
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
+    li {
+      float: left;
+    }
 
-li a.active {
-  background-color: #4CAF50;
-  color: white;
-}
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
 
-li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-</style>
+    li a:hover {
+      background-color: #111;
+    }
+
+
+    li a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #555;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
 
 
 
-<script type="text/javascript">
+  <script type="text/javascript">
     $( document ).ready( function() {
 
         // load the first div
         var divName = $('#first').attr( 'href' )
         var stuff = document.getElementById(divName).innerHTML;
         document.getElementById('myDiv').innerHTML = stuff;
-          
+        
 
-        // assign on click finction to menu items
+        // assign on click finction to menu items 
         $( 'a.dynamicLoad' ).click( function( e ) {
             e.preventDefault();   // prevent the browser from following the link
             e.stopPropagation();  // prevent the browser from following the link
@@ -75,54 +88,57 @@ li a:hover:not(.active) {
             //$( '#myDiv' ).load( $( this ).attr( 'href' ) );
             document.getElementById('myDiv').innerHTML = document.getElementById(divName).innerHTML
 
-        });
-    });
-</script>
+          });
+      });
+    </script>
+
+
+    <div class="header">
+      <h2>Scroll Down</h2>
+      <p>Scroll down to see the sticky effect.</p>
+    </div>
+
+
+    <ul>
+      <li><a id="first" class="active dynamicLoad" href="content_one">Home</a></li>
+      <li><a id="second" class="dynamicLoad" href="content_two">News</a></li>
+      <li><a id="third" class="dynamicLoad" href="content_three">Contact</a></li>
+      <li><a id="fourth" class="dynamicLoad" href="content_four">About</a></li>
+    </ul>
+
+    <div id="myDiv" style="margin-left:5px;margin-top:5px;pxpadding:1px 16px;">
+
+    </div>
+
+
+    <!-- These tags are markers which will replace the "main frame" -->
+    <div id="content_one" style="display: none;">
+      HelloWordl 1
+    </div>
+
+    <div id="content_two" style="display: none;">
+      HelloWordl 2
+      <p>Testing Stuff</p>
+      <p>Testing Stuff</p>
+      <p>Testing Stuff</p>
+    </div>
+
+    <div id="content_three" style="display: none;">
+      <h2>Fixed Full-height Side Nav</h2>
+      <h3>Try to scroll this area, and see how the sidenav sticks to the page</h3>
+      <p>Notice that this div element has a left margin of 25%. This is because the side navigation is set to 25% width. If you remove the margin, the sidenav will overlay/sit on top of this div.</p>
+      <p>Also notice that we have set overflow:auto to sidenav. This will add a scrollbar when the sidenav is too long (for example if it has over 50 links inside of it).</p>
+      <p>Some text..</p>
+      <p>Some text..</p>
+
+    </div>
+
+    <div id="content_four" style="display: none;">
+      HelloWordl 4
+    </div>
 
 
 
 
-<ul>
-  <li><a id="first" class="active dynamicLoad" href="content_one">Home</a></li>
-  <li><a id="second" class="dynamicLoad" href="content_two">News</a></li>
-  <li><a id="third" class="dynamicLoad" href="content_three">Contact</a></li>
-  <li><a id="fourth" class="dynamicLoad" href="content_four">About</a></li>
-</ul>
-
-<div id="myDiv" style="margin-left:25%;padding:1px 16px;height:1000px;">
-  
-
-  <!-- <h2>Fixed Full-height Side Nav</h2>
-  <h3>Try to scroll this area, and see how the sidenav sticks to the page</h3>
-  <p>Notice that this div element has a left margin of 25%. This is because the side navigation is set to 25% width. If you remove the margin, the sidenav will overlay/sit on top of this div.</p>
-  <p>Also notice that we have set overflow:auto to sidenav. This will add a scrollbar when the sidenav is too long (for example if it has over 50 links inside of it).</p>
-  <p>Some text..</p>
-  <p>Some text..</p> -->
-
-
-  
-</div>
-
-
-
-<div id="content_one" style="display: none;">
-    HelloWordl 1
-</div>
-
-<div id="content_two" style="display: none;">
-    HelloWordl 2
-</div>
-
-<div id="content_three" style="display: none;">
-    HelloWordl 3
-</div>
-
-<div id="content_four" style="display: none;">
-    HelloWordl 4
-</div>
-
-
-
-
-</body>
-</html>
+  </body>
+  </html>
