@@ -2,6 +2,13 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function copyDiv(src,dst){
+      var firstDivContent = document.getElementById(src);
+      var secondDivContent = document.getElementById(dst);
+      secondDivContent.innerHTML = firstDivContent.innerHTML;
+    }
+  </script>
 <style>
 body {
   margin: 0;
@@ -39,16 +46,18 @@ li a:hover:not(.active) {
 
 <body>
 
-<!-- ul>
-    <li><a href="new.html" class="dynamicLoad">Hello</a></li>
-    <li><a href="old.html" class="dynamicLoad">Blah</a></li>
-    <li><a href="page3.html" class="dynamicLoad">Blah</a></li>
-</ul -->
-
 
 
 <script type="text/javascript">
     $( document ).ready( function() {
+
+        // load the first div
+        var divName = $('#first').attr( 'href' )
+        var stuff = document.getElementById(divName).innerHTML;
+        document.getElementById('myDiv').innerHTML = stuff;
+          
+
+        // assign on click finction to menu items
         $( 'a.dynamicLoad' ).click( function( e ) {
             e.preventDefault();   // prevent the browser from following the link
             e.stopPropagation();  // prevent the browser from following the link
@@ -58,10 +67,14 @@ li a:hover:not(.active) {
             $( '#third' ).attr('class', 'dynamicLoad')
             $( '#fourth' ).attr('class', 'dynamicLoad')
 
-            console.log($( this ).attr( 'class' ));
+            //console.log($( this ).attr( 'class' ));
             $( this ).attr( 'class', 'active dynamicLoad' );
+            
+            var divName = $( this ).attr( 'href' )
 
-            $( '#myDiv' ).load( $( this ).attr( 'href' ) );
+            //$( '#myDiv' ).load( $( this ).attr( 'href' ) );
+            document.getElementById('myDiv').innerHTML = document.getElementById(divName).innerHTML
+
         });
     });
 </script>
@@ -70,25 +83,46 @@ li a:hover:not(.active) {
 
 
 <ul>
-  <li><a id="first" class="active dynamicLoad" href="new.html">Home</a></li>
-  <li><a id="second" class="dynamicLoad" href="old.html">News</a></li>
-  <li><a id="third" class="dynamicLoad" href="new.html">Contact</a></li>
-  <li><a id="fourth" class="dynamicLoad" href="old.html">About</a></li>
+  <li><a id="first" class="active dynamicLoad" href="content_one">Home</a></li>
+  <li><a id="second" class="dynamicLoad" href="content_two">News</a></li>
+  <li><a id="third" class="dynamicLoad" href="content_three">Contact</a></li>
+  <li><a id="fourth" class="dynamicLoad" href="content_four">About</a></li>
 </ul>
 
 <div id="myDiv" style="margin-left:25%;padding:1px 16px;height:1000px;">
-  <h2>Fixed Full-height Side Nav</h2>
+  
+
+  <!-- <h2>Fixed Full-height Side Nav</h2>
   <h3>Try to scroll this area, and see how the sidenav sticks to the page</h3>
   <p>Notice that this div element has a left margin of 25%. This is because the side navigation is set to 25% width. If you remove the margin, the sidenav will overlay/sit on top of this div.</p>
   <p>Also notice that we have set overflow:auto to sidenav. This will add a scrollbar when the sidenav is too long (for example if it has over 50 links inside of it).</p>
   <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
-  <p>Some text..</p>
+  <p>Some text..</p> -->
+
+
+  
 </div>
+
+
+
+<div id="content_one" style="display: none;">
+    HelloWordl 1
+</div>
+
+<div id="content_two" style="display: none;">
+    HelloWordl 2
+</div>
+
+<div id="content_three" style="display: none;">
+    HelloWordl 3
+</div>
+
+<div id="content_four" style="display: none;">
+    HelloWordl 4
+</div>
+
+
+
 
 </body>
 </html>
